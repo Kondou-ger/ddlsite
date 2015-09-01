@@ -1,0 +1,15 @@
+{% extends "ddlseite/ddl_base.html" %}
+{% block title %}Startseite{% endblock %}
+{% block h1 %}SuperSubs Downloadseite{% endblock %}
+{% block body %}
+{% if projects %}
+    Wir haben folgende Projekte:
+    <ul>{% for p in projects %}<li><a href="/ddl/{{ p.id }}">{{ p.name }}</a></li>{% endfor %}</ul>
+    <br/>
+    Zurzeit stehen {{ Filenum }} Dateien zum Download bereit.<br/>
+    Insgesamt sind das {{ Filesizes }} GiB.
+{% else %}
+    <p>Zurzeit haben wir keine Projekte, bitte schaue später noch ein mal!</p>
+{% endif %}
+{% endblock %}
+{% block footer %}{% endblock %}

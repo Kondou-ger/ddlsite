@@ -1,0 +1,59 @@
+{% extends "ddlseite/ddl_base.html" %}
+{% block title%}Projektdetails{% endblock %}
+{% block h1 %}{{ proj_descr.name }}{% endblock %}
+{% block body %}
+  <img title="{{ proj_descr.name }}" src="{{ proj_descr.image }}" alt=""/>
+  <br/><br/>
+
+  <b>Genre:</b> {{ proj_descr.genre }}<br/><br/>
+
+  {% for stt in proj_state %}
+  <b>Status: <font color="#{{ stt.hexcol }}">{{ stt.stat }}</font></b><br/><br/>
+  {% endfor %}
+
+  <b>Fortschritt:</b> {{ proj_descr.progress }} von {{proj_descr.number_of_episodes}}<br/><br/>
+
+
+  <b><u>Aufgabenverteilung:</u></b><br/>
+  {% for nick in who_did %}
+    <b> {{ nick.nick }}:</b> {{ nick.what }}<br/>
+  {% endfor %}
+  <br/><br/>
+
+  <strong><u>Downloads:</u></strong><br/>
+
+  {% for tab_tit in tabellentitel %}
+  {% if tab_tit.table_title_link %}
+  <a href="{{ tab_tit.table_title_link }}"><b>{{ tab_tit.table_title_name }}</b></a>
+  {% else %}
+  <b>{{ tab_tit.table_title_name }}</b>
+  {% endif %} 
+  {% endfor %}
+  <br/>
+  {% if dls %}
+  <table>
+   <tbody>
+    <tr bgcolor="#DDDDDD">
+     <th>Nr.</th>
+     <th>Episodentitel</th>
+     <th>Datum</th>
+     <th>Dateigröße</th>
+     <th>Download</th>
+     <th><a href="irc://irc.otakubox.at/SuperSubs/">XDCC</a></th>
+    </tr>
+  {% for dl in dls %}
+    <tr>
+     <td>{{ dl.number }}</td>
+     <td>{{ dl.title }}</td>
+     <td>{{ dl.date|date:"d.m.Y" }}</td>
+     <td>{{ dl.filesize }} MiB</td>
+     <td><a href="{{ dl.ddl }}">DDL</a> / {% if dl.project.torrentbatch %} <a href="{{ dl.project.torrentbatch }}">Batch</a> {% else %} <a href="{{ dl.torrent }}">Torrent</a>{% endif %}</td>
+     <td>{% if dl.XDCCHaruhi %}{{ dl.XDCCHaruhi }} / {% endif %}{{ dl.XDCCYoumu }}</td>
+    </tr>
+  {% endfor %}
+   </tbody>
+  </table>
+  {% else %}
+  Keine Downloads verfügbar.
+  {% endif %}
+{% endblock body %}

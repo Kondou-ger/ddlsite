@@ -1,0 +1,7 @@
+Startversion: 16.02.2012 a.k.a. V 1.0.0
+
+
+Geplante Features:
+  Genre zu ManyToManyField machen (neue bestückung der Genres nötig >.>), ermöglicht Processing mit Genres.
+  Aufgaben der Aufgabenverteilung zu ManyToManyField machen? Ermöglicht Processing damit, aufgabenverteilung admin dings wird aber cluttered ...
+  Zusammenfassende seite auf der steht, wer was wo und wie häufig macht ... oder so ...
