@@ -1,10 +1,8 @@
-# Django settings for kondou_django project.
-
-DEBUG = True
-TEMPLATE_DEBUG = DEBUG
+DEBUG = False
+TEMPLATE_DEBUG = False
 
 ADMINS = (
-    # ('Your Name', 'your_email@domain.com'),
+    ('Kondou', 'ChrSch94@gmail.com'),
 )
 
 MANAGERS = ADMINS
@@ -12,7 +10,7 @@ MANAGERS = ADMINS
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': '/media/91f43741-b4bb-4393-8910-f6e9da6b2264/supersubs_django/sqlite.db',
+        'NAME': '/home/httpserv/supersubs_django/sqlite.db',
         'USER': '',                      # Not used with sqlite3.
         'PASSWORD': '',                  # Not used with sqlite3.
         'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
@@ -55,7 +53,7 @@ MEDIA_URL = 'http://supersubs.dyndns.biz:8131/'
 # URL prefix for admin media -- CSS, JavaScript and images. Make sure to use a
 # trailing slash.
 # Examples: "http://foo.com/media/", "/media/".
-ADMIN_MEDIA_PREFIX = 'http://supersubs.dyndns.biz:8131/'
+STATIC_URL = 'http://downloads.supersubs.de/static/'
 
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = 'okha%mm(o&r^n_euhpwfb+urn$+k#bd5jr4erxf0^(@0*$30k5'
@@ -73,21 +71,23 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
+    'django.contrib.redirects.middleware.RedirectFallbackMiddleware',
 )
 
 ROOT_URLCONF = 'supersubs_django.urls'
 
 TEMPLATE_DIRS = (
-    '/media/91f43741-b4bb-4393-8910-f6e9da6b2264/supersubs_django/templates/'
+    '/home/httpserv/supersubs_django/templates/'
 )
 
 INSTALLED_APPS = (
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
-    #'django.contrib.sites',
+    'django.contrib.sites',
     'django.contrib.messages',
     'ddlseite',
     'django.contrib.admin',
-    #'django.contrib.admindocs',
+    'django.contrib.admindocs',
+    'django.contrib.redirects',
 )

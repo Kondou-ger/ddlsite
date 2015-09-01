@@ -5,7 +5,7 @@
   <img title="{{ proj_descr.name }}" src="{{ proj_descr.image }}" alt=""/>
   <br/><br/>
 
-  <b>Genre:</b> {{ proj_descr.genre }}<br/><br/>
+  <b>Genre:</b>{% for gnr in proj_descr.genre.all %} {% if forloop.revcounter0 %} {{ gnr }}, {% else %} {{ gnr }} {% endif %}{% endfor %}<br/><br/>
 
   {% for stt in proj_state %}
   <b>Status: <font color="#{{ stt.hexcol }}">{{ stt.stat }}</font></b><br/><br/>
@@ -15,9 +15,13 @@
 
 
   <b><u>Aufgabenverteilung:</u></b><br/>
-  {% for nick in who_did %}
-    <b> {{ nick.nick }}:</b> {{ nick.what }}<br/>
-  {% endfor %}
+  {% if who_did %}
+    {% for nick in who_did %}
+      <b> {{ nick.nick }}:</b> {% for tasks in nick.what.all %} {% if forloop.revcounter0 %} {{ tasks }}, {% else %} {{ tasks }} {% endif %}{% endfor %}<br/>
+    {% endfor %}
+  {% else %}
+    – folgt –
+  {% endif %}
   <br/><br/>
 
   <strong><u>Downloads:</u></strong><br/>
@@ -47,8 +51,8 @@
      <td>{{ dl.title }}</td>
      <td>{{ dl.date|date:"d.m.Y" }}</td>
      <td>{{ dl.filesize }} MiB</td>
-     <td><a href="{{ dl.ddl }}">DDL</a> / {% if dl.project.torrentbatch %} <a href="{{ dl.project.torrentbatch }}">Batch</a> {% else %} <a href="{{ dl.torrent }}">Torrent</a>{% endif %}</td>
-     <td>{% if dl.XDCCHaruhi %}{{ dl.XDCCHaruhi }} / {% endif %}{{ dl.XDCCYoumu }}</td>
+     <td><a href="{{ dl.ddl }}">DDL</a> {% if dl.project.torrentbatch %}/ <a href="{{ dl.torrentbatch }}">Batch</a> {% elif dl.torrent %}/  <a href="{{ dl.torrent }}">Torrent</a>{% endif %}</td>
+     <td>{{ dl.XDCCYoumu }}</td>
     </tr>
   {% endfor %}
    </tbody>

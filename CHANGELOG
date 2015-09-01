@@ -1,7 +1,13 @@
-Startversion: 16.02.2012 a.k.a. V 1.0.0
+Startversion: 07.02.2012 a.k.a. V 1.0.0
 
+16.02.2012: V 1.1.0
+ Redundanzen entfernt
+ Missverständnis entfernt
+ Realname kommentar aus Nick Tabelle entfernt, da unused
+ Modelle besser angeordnet, wenige dependencies ↑ viele ↓
+ Genre in eigener Klasse umgesetzt, Project.Genre in ManyToManyField umgewandelt
+ Aufgabennamen in eigener Klasse umgesetzt, Who_did_what.what in ManyToManyField umgewandelt
 
 Geplante Features:
-  Genre zu ManyToManyField machen (neue bestückung der Genres nötig >.>), ermöglicht Processing mit Genres.
-  Aufgaben der Aufgabenverteilung zu ManyToManyField machen? Ermöglicht Processing damit, aufgabenverteilung admin dings wird aber cluttered ...
   Zusammenfassende seite auf der steht, wer was wo und wie häufig macht ... oder so ...
+  Statistikseiten, X% der Projekte laufen, Y% der Arbeit macht Z, usw.
